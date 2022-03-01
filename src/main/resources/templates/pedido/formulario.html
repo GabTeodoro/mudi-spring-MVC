@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="~{base :: head}">
+<title>Formulário</title>
+</head>
+<body>
+	<div th:replace="~{base :: logo}"></div>
+	
+	<div class="container">
+		<div th:replace="~{base :: titulo('Novo Pedido')}"></div>
+
+		<div class="card mt-3">
+		
+			<form th:object="${requisicaoNovoPedido}" class="card-body" action="/pedido/novo" method="post">
+				<div class="mb-3">
+					<label for="nomeProduto" class="form-label">Produto</label> 
+					<input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control" placeholder="Nome do produto"> 
+					<small class="form-text">Informe o nome do produto.</small>
+					<div class="invalid-feedback" th:errors="*{nomeProduto}">Erros nome Produto</div>
+				</div>
+				<div class="mb-3">
+					<label for="urlProduto" class="form-label">Url</label> 
+					<input th:field="*{urlProduto}" th:errorclass="is-invalid" class="form-control" placeholder="Url do produto"> 
+					<small class="form-text">Procure em um site o produto que você dejesa e cole a url da página aqui.</small>
+					<div th:errors="*{urlProduto}" class="invalid-feedback">Erros url Produto</div>
+				</div>
+				<div class="mb-3">
+					<label for="urlImagem" class="form-label">Imagem</label> 
+					<input th:field="*{urlImagem}" th:errorclass="is-invalid" class="form-control" placeholder="Url do imagem">
+					<small class="form-text">Copie a url de uma boa imagem do produto e cole aqui para ajudar a conseguir compradores.</small>
+					<div th:errors="*{urlImagem}" class="invalid-feedback">Erros imagem Produto</div>
+				</div>
+				<div class="mb-3">
+					<label for="descricao" class="form-label">Descrição</label>
+					<textarea th:field="*{descricao}" class="form-control"
+						placeholder="Adicione detalhes importantes para ajudar o comprador."></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">Cadastrar</button>
+			</form>
+			
+		</div>
+
+	</div>
+</body>
+</html>
